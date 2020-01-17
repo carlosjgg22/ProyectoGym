@@ -1,0 +1,6 @@
+{
+  "name": "proyecto-gimnasio",
+  "short_name": "proyecto-gimnasio",
+  "start_url": "/",
+  "display": "standalone"
+}

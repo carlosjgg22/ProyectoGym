@@ -1,0 +1,87 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="asignar-entrenador">    
+ <template>
+<div class="form">
+<select id="lista-entrenador" on-click="toggleSelection">
+    <option value="" selected disabled>Seleccionar Entrenador</option>
+    <template is="dom-repeat" id="lista"  items="{{entrenador}}" as="item">
+    <option value="[[item]]"> {{item.nombre}} Categoria:{{item.categoria}}</option>
+     
+    </template> 
+</select>
+
+<array-selector id="selector" items="{{entrenador}}" selected="{{selected}}" multi toggle></array-selector>
+
+    <div> Entrenador Seleccionado: </div>
+    <template is="dom-repeat" items="{{selected}}" as="valor">
+        <div>First name: <span>{{valor.nombre}}</span></div>
+        <div>Last name: <span>{{valor.categoria}}</span></div>
+    </template>
+</div>
+
+
+<style>
+        *{
+    box-sizing: border-box;
+
+}
+
+body{
+    margin:0;
+    font-family: roboto;
+}
+    .form{
+width: 500px;
+margin:auto;
+margin-top: 20px;
+padding:20px;
+box-shadow: 0 0 20px 1px rgba(0,0,0,0.3);
+position:relative
+    }
+</style>
+</template>
+ <script>
+    class AsignarEntrenador extends Polymer.Element{
+
+        static get is(){return "asignar-entrenador";}
+
+        static get properties(){
+            return {
+                entrenador:{
+                    type:Array,
+                    value:()=>{
+                        return[
+                            {nombre: 'Amilcar Brusa',
+                             categoria:'Mosca-Gallo'
+                            },
+
+                            {nombre: 'Santos Zacarias',
+                             categoria:'Pluma-Ligero'
+                            },
+
+                            {nombre: 'Cristóbal Rozas',
+                             categoria:'Welter-Mediano'
+                            },
+
+                            {nombre: 'Angelo Dundee',
+                             categoria:'Mediano-Pesado'
+                            }
+                        ];
+                    }
+                }
+              
+      }
+       
+                }
+
+              toggleSelection(e){
+        var item = this.$.lista.itemForElement(e.target);
+        this.$.selector.select(item);
+            }   
+            }                
+
+window.customElements.define(AsignarEntrenador.is, AsignarEntrenador);
+</script>
+</dom-module>
+
